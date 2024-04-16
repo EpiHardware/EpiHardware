@@ -1,0 +1,6 @@
+[submodule "EpiHardware-frontend"]
+	path = EpiHardware-frontend
+	url = git@github.com:EpiHardware/EpiHardware-frontend.git
+[submodule "EpiHardware-backend"]
+	path = EpiHardware-backend
+	url = git@github.com:EpiHardware/EpiHardware-backend.git
