@@ -1,6 +1,12 @@
-version: '3.8'
+version: '3'
 
 services:
+  front:
+    container_name: front
+    build:
+      context: ./EpiHardware-frontend
+    ports:
+      - "3000:3000"
   db:
     image: postgres:latest
     container_name: postgres_db
