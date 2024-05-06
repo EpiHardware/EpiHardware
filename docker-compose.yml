@@ -7,6 +7,12 @@ services:
       context: ./EpiHardware-frontend
     ports:
       - "3000:3000"
+  back:
+    container_name: back
+    build:
+      context: ./EpiHardware-backend
+    ports:
+      - "8000:8000"
   db:
     image: postgres:latest
     container_name: postgres_db
