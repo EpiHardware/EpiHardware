@@ -30,7 +30,7 @@ Before you begin, ensure you have the following tools installed on your system:
 ### Installation
 
 This application is shipped with Docker and Docker Compose for containerization. It uses other projects that need to be
-clone recursively. You can do so with the following command:
+cloned recursively. You can do so with the following command:
 
 ```bash
 git clone git@github.com:EpiHardware/EpiHardware.git --recursive
@@ -41,6 +41,28 @@ Edit the `.env` environment file and make the necessary changes in accordance to
 ### Running the Application
 
 To run the application, execute the following command:
+
+Without Docker:
+
+```bash
+cd EpiHardware-frontend
+npm install
+npm run start
+```
+
+```bash
+cd EpiHardware-backend
+composer install
+symfony console doctrine:migration:migrate
+symfony console doctrine:fixtures:load
+mkdir config/jwt
+openssl genpkey -out config/jwt/private.pem -aes256 -algorithm rsa -pkeyopt rsa_keygen_bits:4096
+# Enter a passphrase when prompted
+openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout
+symfony server:start
+````
+
+With docker:
 
 ```bash
 cd EpiHardware
