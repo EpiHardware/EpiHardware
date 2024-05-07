@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  front:
+    container_name: front
+    restart: always
+    build:
+      context: ./EpiHardware-frontend
+    ports:
+      - "3000:3000"
+    networks:
+        - network
+  back:
+    container_name: back
+    restart: always
+    build:
+      context: ./EpiHardware-backend
+    ports:
+      - "8000:8000"
+    networks:
+      - network
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: db_name
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - .:/db
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - network
+networks:
+  network:
+volumes:
+  db:
